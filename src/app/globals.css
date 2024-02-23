@@ -36,8 +36,20 @@ body {
   @apply focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 disabled:cursor-not-allowed;
 }
 
+.btn-success {
+  @apply w-[100px] bg-green-600 hover:bg-green-700 focus:ring-green-800;
+}
+
+.btn-warning {
+  @apply w-[100px] bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-900;
+}
+
 .btn-error {
   @apply bg-red-600 hover:bg-red-800 focus:ring-red-800;
+}
+
+.btn-dark {
+  @apply rounded-lg border focus:z-10 focus:ring-gray-600 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-900;
 }
 
 .landing-img {
@@ -46,4 +58,28 @@ body {
 
 .blackjack-title {
   @apply text-3xl sm:text-6xl mb-10 tracking-widest;
+}
+
+.game-board {
+  @apply flex flex-col py-10 lg:py-0 items-center justify-between md:justify-around w-[100%] relative h-[100%];
+}
+
+.btn-arena {
+  @apply flex items-center justify-around w-[100%] my-10;
+}
+
+.blackjack-text {
+  @apply sm:tracking-widest md:tracking-1 text-2xl opacity-50 text-gray-400 md:ml-4 hidden sm:block;
+}
+
+.card-img {
+  @apply mb-2 sm:mb-0;
+}
+
+.hand {
+  @apply flex flex-col space-y-5 items-center;
+}
+
+.hand-cards {
+  @apply flex space-x-2 flex-wrap max-w-[220px] sm:max-w-[none] justify-center;
 }
