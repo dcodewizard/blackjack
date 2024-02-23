@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'deckofcardsapi.com',
+      }
+    ],
+  },
+  reactStrictMode: false,
+};
 
 export default nextConfig;
