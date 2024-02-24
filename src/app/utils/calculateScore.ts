@@ -1,5 +1,5 @@
 import { Card } from "@/types";
-import { FACE_CARD_VALUES, ACE_CARD_VALUE } from "@/constants";
+import { FACE_CARD_VALUES, ACE_CARD_VALUE, WINNING_SCORE } from "@/constants";
 
 export const calculateScore = (cards: Card[]) => {
   let score = 0;
@@ -14,7 +14,7 @@ export const calculateScore = (cards: Card[]) => {
       score += Number(card.value);
     }
   }
-  while (score > 21 && numAces > 0) {
+  while (score > WINNING_SCORE && numAces > 0) {
     score -= 10;
     numAces--;
   }

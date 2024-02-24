@@ -9,3 +9,7 @@ export const FACE_CARD_VALUES = ["KING", "QUEEN", "JACK"];
 export const ACE_CARD_VALUE = "ACE";
 export const GAME_CONTEXT_ERROR =
   "useGameContext must be used within a GameContextProvider";
+export const GAME_WIN_TEXT = "You have won the game";
+export const GAME_LOSE_TEXT = "You have lost the game";
+export const END_GAME_TEXT = "End Game";
+export const WINNING_SCORE = 21;

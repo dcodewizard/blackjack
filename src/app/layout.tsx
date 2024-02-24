@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer, Zoom } from "react-toastify";
 
+import GameContextProvider from "@/context/GameContext";
+
 import "react-toastify/dist/ReactToastify.css";
 import "@/globals.css";
 
@@ -34,7 +36,10 @@ export default function RootLayout({
           transition={Zoom}
         />
         <main className="main-container">
-          <div className="game-container">{children}</div>
+          <div className="game-container">
+            {" "}
+            <GameContextProvider>{children}</GameContextProvider>
+          </div>
         </main>
       </body>
     </html>

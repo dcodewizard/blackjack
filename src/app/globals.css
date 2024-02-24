@@ -83,3 +83,35 @@ body {
 .hand-cards {
   @apply flex space-x-2 flex-wrap max-w-[220px] sm:max-w-[none] justify-center;
 }
+
+.backdrop {
+  @apply opacity-25 fixed inset-0 z-40 bg-black;
+}
+
+.modal {
+  @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none;
+}
+
+.modal-container {
+  @apply relative mx-auto w-[90%] sm:w-[60%] md:w-[40%] lg:w-[30%];
+}
+
+.modal-content {
+  @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-700 outline-none focus:outline-none;
+}
+
+.modal-title-container {
+  @apply p-4 md:p-5 text-center;
+}
+
+.modal-title {
+  @apply flex w-[100%] justify-center mb-3;
+}
+
+.modal-text {
+  @apply mb-5 text-lg font-normal text-white;
+}
+
+.error-text {
+  @apply text-red-700 font-medium;
+}

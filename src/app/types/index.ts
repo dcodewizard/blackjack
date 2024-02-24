@@ -47,3 +47,9 @@ export type withTryCatchType = {
   catchFunction?: (e: any) => void | null | undefined;
   finallyFunction?: () => void | undefined;
 };
+
+export type ModalProps = {
+  win: boolean;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<Boolean>>;
+};
