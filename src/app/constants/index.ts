@@ -13,3 +13,6 @@ export const GAME_WIN_TEXT = "You have won the game";
 export const GAME_LOSE_TEXT = "You have lost the game";
 export const END_GAME_TEXT = "End Game";
 export const WINNING_SCORE = 21;
+export const NOT_FOUND_TITLE = "Oops!";
+export const NOT_FOUND_TEXT = "The page you are looking for does not exist.";
+export const NOT_FOUND_BTN_TEXT = "Go to Home";

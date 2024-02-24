@@ -115,3 +115,11 @@ body {
 .error-text {
   @apply text-red-700 font-medium;
 }
+
+.not-found-title {
+  @apply text-4xl font-semibold;
+}
+
+.not-found-container {
+  @apply flex flex-col space-y-5 items-center;
+}

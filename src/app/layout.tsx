@@ -37,7 +37,6 @@ export default function RootLayout({
         />
         <main className="main-container">
           <div className="game-container">
-            {" "}
             <GameContextProvider>{children}</GameContextProvider>
           </div>
         </main>
