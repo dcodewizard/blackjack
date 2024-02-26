@@ -3,11 +3,10 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
 import { Card } from "@/types";
-import { drawCards, getDeck, shuffleCards } from "@/services/deckService";
 import { calculateScore } from "@/utils/calculateScore";
 import { GameContextProviderProps, GameContextType } from "@/types";
-import { withTryCatch } from "@/utils/withTryCatch";
 import { GAME_CONTEXT_ERROR } from "@/constants";
+import { getDeckAction, startGameAction } from "@/api/deck/actions";
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
@@ -22,30 +21,25 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    withTryCatch({
-      tryFunction: async () => {
+    getDeckAction({
+      onSetup: () => {
         setError(null);
         setIsLoading(true);
-        const {
-          data: { deck_id },
-        } = await getDeck();
-        setDeckId(deck_id);
       },
-      catchFunction: (error) => setError(error.message),
-      finallyFunction: () => setIsLoading(false),
+      onSuccess: (data) => setDeckId(data.deck_id),
+      onFailure: (error) => setError(error.message),
+      onCompletion: () => setIsLoading(false),
     });
   }, []);
 
   useEffect(() => {
-    if (deckId)
-      withTryCatch({
-        tryFunction: async () => {
+    if (deckId) {
+      startGameAction(deckId, {
+        onSetup: () => {
           setError(null);
           setIsLoading(true);
-          await shuffleCards(deckId);
-          const {
-            data: { cards },
-          } = await drawCards(deckId, 4);
+        },
+        onSuccess: ({ cards }) => {
           const houseCards = cards.slice(0, 2);
           const playerCards = cards.slice(2);
           setHouseHand(houseCards);
@@ -53,9 +47,10 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
           setPlayerScore(calculateScore(playerCards));
           setHouseScore(calculateScore(houseCards));
         },
-        catchFunction: (error) => setError(error.message),
-        finallyFunction: () => setIsLoading(false),
+        onFailure: (error) => setError(error.message),
+        onCompletion: () => setIsLoading(false),
       });
+    }
   }, [deckId, newGameBoolean]);
 
   const value = {
@@ -83,4 +78,3 @@ export const useGameContext = () => {
 };
 
 export default GameContextProvider;
-

@@ -53,3 +53,12 @@ export type ModalProps = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<Boolean>>;
 };
+
+export type APICallArgsType = {
+  onSetup?: () => void;
+  onSuccess: (data: any) => void;
+  onFailure?: (error: any) => void;
+  onCompletion?: () => void;
+};
+
+export type APIFunctionType = () => Promise<any>;

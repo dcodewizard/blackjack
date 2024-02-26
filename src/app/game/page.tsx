@@ -5,11 +5,10 @@ import { useMemo, useState } from "react";
 import Modal from "@/components/Modal";
 import Hand from "@/components/Hand";
 import { useGameContext } from "@/context/GameContext";
-import { drawCards } from "@/services/deckService";
 import { calculateScore } from "@/utils/calculateScore";
 import { GAME_NAME, HITTING_TEXT, HIT_TEXT, STAND_TEXT } from "@/constants";
-import { withTryCatch } from "@/utils/withTryCatch";
 import { PlayerType } from "@/types";
+import { drawCardsAction } from "@/api/deck/actions";
 
 const Game = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -27,13 +26,9 @@ const Game = () => {
   } = useGameContext();
 
   const handleHit = async () => {
-    withTryCatch({
-      tryFunction: async () => {
-        setIsHitting(true);
-        const {
-          data: { cards },
-        } = await drawCards(deckId);
-
+    drawCardsAction(deckId, {
+      onSetup: () => setIsHitting(true),
+      onSuccess: ({ cards }) => {
         const updatedPlayerHand = [...playerHand, cards[0]];
         const updatedScore = calculateScore(updatedPlayerHand);
         setPlayerHand(updatedPlayerHand);
@@ -41,8 +36,7 @@ const Game = () => {
 
         if (updatedScore > 21) setModalOpen(true);
       },
-      catchFunction: null,
-      finallyFunction: () => setIsHitting(false),
+      onCompletion: () => setIsHitting(false),
     });
   };
 

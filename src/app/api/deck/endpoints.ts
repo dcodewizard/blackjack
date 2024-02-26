@@ -1,4 +1,4 @@
-import axios from "@/services/axios";
+import axios from "@/api/axios";
 
 export const getDeck = async () => axios.get("/new/shuffle/?deck_count=1");
 
